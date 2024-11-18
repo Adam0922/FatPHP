@@ -1,8 +1,6 @@
 <?php
 
-require_once('../includes/connect.php');
-include('../includes/header.php');
-include('../includes/menu.php');
+include("connect.php");
 
 // Initialize search variables for each field
 $searchAzonosito = isset($_POST['searchAzonosito']) ? $_POST['searchAzonosito'] : '';

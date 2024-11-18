@@ -1,8 +1,6 @@
 <?php
 
-require_once('../includes/connect.php');
-include('../includes/header.php');
-include('../includes/menu.php');
+include("connect.php");
 
 $searchAzonosito = isset($_POST['searchAzonosito']) ? $_POST['searchAzonosito'] : '';
 $searchFelhasznalonev = isset($_POST['searchFelhasznalonev']) ? $_POST['searchFelhasznalonev'] : '';
