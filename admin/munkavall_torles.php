@@ -7,6 +7,6 @@ if ($id >= 0) {
     // Lekérdezzük az adott ID-hoz tartozó vevő adatait
     $sql = "DELETE FROM munkavallalo WHERE Azonosito = $id";
     $result = $conn->query($sql);
-
+    echo"<br> Munkavállaló sikeresen kitörölve!";
        }?>
 

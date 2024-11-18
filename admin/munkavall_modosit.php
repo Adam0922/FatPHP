@@ -128,7 +128,7 @@ if ($id >= 0) {
 		</div>
         <?php
     } else {
-        echo "Nincs ilyen azonosítóval rendelkező vevő.";
+        echo "Nincs ilyen azonosítóval rendelkező munkavállaló.";
     }
 }
 

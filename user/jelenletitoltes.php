@@ -1,5 +1,7 @@
 <?php
-include("connect.php");
+require_once('../includes/connect.php');
+include('../includes/header.php');
+include('includes/user_menu.php');
 
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
     $Ev = $_POST['ev'];

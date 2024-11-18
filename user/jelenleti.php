@@ -16,14 +16,14 @@
 							<div class="col-12 col-md-6">
 								<div class="mb-3">
 									<label for="honap" class="form-label">Hónap</label>
-									<input type="month" class="form-control" id="honap" name="honap" />
+									<input type="number" class="form-control" id="honap" name="honap" />
 								</div>
 							</div>
 
 							<div class="col-12 col-md-6">
 								<div class="mb-3">
 									<label for="nap" class="form-label">Nap</label>
-									<input type="text" class="form-control" id="nap" name="nap" />
+									<input type="number" class="form-control" id="nap" name="nap" />
 								</div>
 							</div>
 
@@ -64,7 +64,7 @@
 
 						<div class="d-flex justify-content-between mt-4">
 							<div>
-								<a href="formstart.html" class="btn btn-outline-primary">Munkavállaló</a>
+								<a href="index.php?p=munkavall" class="btn btn-outline-primary">Munkavállaló</a>
 								<a href="munkakor.html" class="btn btn-outline-primary">Munkakör</a>
 								<a href="#" class="btn btn-outline-primary">Jelenlétiív</a>
 							</div>

@@ -1,6 +1,6 @@
 
 		<div class="container my-5">
-			<form action="index.php?p=munkakortoltes" method="POST">
+			<form action="index.php?p=munkakor_toltes" method="POST">
 				<div class="card shadow-sm">
 					<div class="card-header bg-primary text-white">
 						<h4 class="mb-0">Munkakör adatok</h4>
@@ -33,7 +33,7 @@
 						<!-- Action buttons -->
 						<div class="d-flex justify-content-between mt-4">
 							<div>
-								<a href="formstart.html" class="btn btn-outline-primary">Munkavállaló</a>
+								<a href="index.php?p=munkavall" class="btn btn-outline-primary">Munkavállaló</a>
 								<a href="#" class="btn btn-outline-primary">Munkakör</a>
 								<a href="jelenleti.html" class="btn btn-outline-primary">Jelenlétiív</a>
 							</div>

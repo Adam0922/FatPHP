@@ -1,6 +1,6 @@
 
 		<div class="container my-5">
-			<form action="starttoltes.php" method="POST">
+			<form action="munkavall_toltes.php" method="POST">
 				<div class="card shadow-sm">
 					<div class="card-header bg-primary text-white">
 						<h4 class="mb-0">Munkavállalói adatok</h4>
@@ -10,7 +10,7 @@
 							<div class="col-12 col-md-6">
 								<div class="mb-3">
 									<label for="Felhasznalonev" class="form-label">Felhasználónév</label>
-									<input type="text" class="form-control" id="Felhasznalonev" name="Felhasznalonev"   />
+                                    <input type="text" class="form-control" id="Felhasznalonev" name="Felhasznalonev"   />
 								</div>
 							</div>
 
@@ -80,7 +80,7 @@
 							<div class="col-12 col-md-6">
 								<div class="mb-3">
 									<label for="Szuletesi_hely" class="form-label">Születési hely</label>
-									<input type="text" class="form-control" id="Szuletesi_hely" name="Szuletesi_hely"   />
+									<input type="text" class="form-control" id="Szuletesi_hely" name="Szuletesi_hel6y"   />
 								</div>
 							</div>
 
@@ -201,7 +201,7 @@
 								<div class="mb-3">
 									<label for="Munkaszerzodesek_kelte" class="form-label">Munkaszerzodes kezdete</label>
 									<input
-										type="text"
+										type="date"
 										class="form-control"
 										id="Munkaszerzodesek_kelte"
 										name="Munkaszerzodesek_kelte"
@@ -213,8 +213,8 @@
 						<div class="d-flex justify-content-between mt-4">
 							<div>
 								<a href="#" class="btn btn-outline-primary">Munkavállaló</a>
-								<a href="munkakor.html" class="btn btn-outline-primary">Munkakör</a>
-								<a href="jelenleti.html" class="btn btn-outline-primary">Jelenlétiív</a>
+								<a href="index.php?p=munkakor" class="btn btn-outline-primary">Munkakör</a>
+								<a href="index.php?p=jelenleti" class="btn btn-outline-primary">Jelenlétiív</a>
 							</div>
 
 							<button type="submit" class="btn btn-danger">Mentés</button>
