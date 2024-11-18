@@ -4,6 +4,7 @@ include('../includes/header.php');
 include('includes/admin_menu.php');
 ?>
 
+<div class="main-content">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mt-4">
@@ -121,6 +122,7 @@ include('includes/admin_menu.php');
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <?php
