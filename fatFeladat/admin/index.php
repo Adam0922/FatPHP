@@ -1,11 +1,12 @@
 <?php
 require_once('../includes/connect.php');
 include('../includes/header.php');
-include('includes/admin_menu.php');
 ?>
+<div class="page-container">
+    <?php include('includes/admin_menu.php'); ?>
 
-<div class="main-content">
-    <h1>Admin Vezérlőpult</h1>
+    <div class="main-content">
+        <h1>Admin Vezérlőpult</h1>
     
     <!-- Statisztikai kártyák -->
     <div class="stats-container">
