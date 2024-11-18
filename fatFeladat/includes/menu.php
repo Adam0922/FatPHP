@@ -20,7 +20,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Navbar brand/logo -->
-        <img src="pics/10017656.png" alt="Money stack" class="d-inline-block align-top">
+        <img src="images/10017656.png" alt="Money stack" class="d-inline-block align-top">
 
         <!-- Toggle button for mobile view -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
