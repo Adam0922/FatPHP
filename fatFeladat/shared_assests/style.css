@@ -22,6 +22,14 @@ body {
     padding: 20px;
 }
 
+.btn-sm i {
+    font-size: 14px;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+}
+
 form {
     background-color: #fff;
     padding: 20px;

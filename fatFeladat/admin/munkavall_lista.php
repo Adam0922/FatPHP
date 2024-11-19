@@ -1,6 +1,6 @@
 <?php
 
-include("connect.php");
+include("../common/connect.php");
 
 $searchAzonosito = isset($_POST['searchAzonosito']) ? $_POST['searchAzonosito'] : '';
 $searchFelhasznalonev = isset($_POST['searchFelhasznalonev']) ? $_POST['searchFelhasznalonev'] : '';
@@ -116,6 +116,13 @@ $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>
                             <td>" . $row['Azonosito'] . "</td>
+                            <td>";
+                                            if (!empty($imageFiles)) {
+                                                echo "<img src='" . $imageFiles[0] . "' alt='Kép' style='max-width: 100px; max-height: 100px;'>";
+                                            } else {
+                                                echo "Nincs kép";
+                                            }
+                                            echo "</td>
                             <td>" . $row['Felhasznalonev'] . "</td>
                             <td>" . $row['email'] . "</td>
                             <td>" . $row['Telefonszam'] . "</td>
@@ -130,9 +137,9 @@ $result = $conn->query($sql);
                             <td>" . $row['Fizetes'] . "</td>
                             <td>" . $row['Munkaviszony_kezdete'] . "</td>
                             <td>
-                                <a class='btn btn-warning btn-sm' href='index.php?p=munkavall_modosit&id=" . $row['Azonosito'] . "'>Módosítás</a>
-                                <a class='btn btn-danger btn-sm' href='index.php?p=munkavall_torles&id=" . $row['Azonosito'] . "'>Törlés</a>
-                            </td>
+                                <a class='btn btn-warning btn-sm' href='index.php?p=munkavall_modosit&id=" . $row['Azonosito'] . "' title='Módosítás'><i class='fas fa-edit'></i></a>
+                                            <a class='btn btn-danger btn-sm' href='index.php?p=munkavall_torles&id=" . $row['Azonosito'] . "' title='Törlés'><i class='fas fa-trash-alt'></i></a>
+                                        </td>
                         </tr>";
                 }
             } else {

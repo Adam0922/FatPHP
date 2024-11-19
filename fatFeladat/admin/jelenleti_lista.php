@@ -1,6 +1,6 @@
 <?php
 
-include("connect.php");
+include("../common/connect.php");
 
 // Initialize search variables for each field
 $searchId = isset($_POST['searchId']) ? $_POST['searchId'] : '';
@@ -108,9 +108,9 @@ $result = $conn->query($sql);
                     <td>" . $row['szunet'] . "</td>
                     <td>" . $row['megjegyzes'] . "</td>
                     <td>
-                        <a class='btn btn-warning btn-sm' href='index.php?p=jelenleti_modosit&id=" . $row['jelenleti_id'] . "'>Módosítás</a>
-                        <a class='btn btn-danger btn-sm' href='index.php?p=jelenleti_torles&id=" . $row['jelenleti_id'] . "'>Törlés</a>
-                    </td>
+                        <a class='btn btn-warning btn-sm' href='index.php?p=jelenleti_modosit&id=" . $row['jelenleti_id'] . "' title='Módosítás'><i class='fas fa-edit'></i></a>
+                                                                    <a class='btn btn-danger btn-sm' href='index.php?p=jelenleti_torles&id=" . $row['jelenleti_id'] . "' title='Törlés'><i class='fas fa-trash-alt'></i></a>
+                                                                </td>
                 </tr>";
         }
 
