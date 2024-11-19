@@ -64,7 +64,7 @@
 
 						<div class="d-flex justify-content-between mt-4">
 							<div>
-								
+
 							</div>
 
 							<button type="submit" class="btn btn-danger">Mentés</button>

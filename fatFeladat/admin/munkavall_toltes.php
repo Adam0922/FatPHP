@@ -1,5 +1,5 @@
 <?php
-include("connect.php");
+include("../common/connect.php");
 
 if ($_SERVER["REQUEST_METHOD"]=="POST"){
     $felhasznalonev = $_POST['Felhasznalonev'];

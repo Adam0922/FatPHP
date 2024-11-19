@@ -11,7 +11,9 @@ $searchSzuletesiIdo = isset($_POST['searchSzuletesiIdo']) ? $_POST['searchSzulet
 $searchMunkakor = isset($_POST['searchMunkakor']) ? $_POST['searchMunkakor'] : '';
 $searchMunkaviszonyKezdete = isset($_POST['searchMunkaviszonyKezdete']) ? $_POST['searchMunkaviszonyKezdete'] : '';
 
-$sql = "SELECT Azonosito, Felhasznalonev, email, Telefonszam, Nev, Lakcim, Adoszam, Taj, Anyja_neve, szuletesi_ido, Gyerekek, Munkakor, Fizetes, Munkaviszony_kezdete FROM munkavallalo";
+$sql = "SELECT m.Azonosito, m.Felhasznalonev, m.email, m.Telefonszam, m.Nev, m.Lakcim, m.Adoszam, m.Taj, m.Anyja_neve, m.szuletesi_ido, m.Gyerekek, mk.Nev AS Munkakor_nev, m.Fizetes, m.Munkaviszony_kezdete
+        FROM munkavallalo m
+        LEFT JOIN munkakor mk ON m.Munkakor = mk.Azonosito";
 
 $conditions = [];
 if ($searchAzonosito !== '') {
@@ -33,7 +35,7 @@ if ($searchSzuletesiIdo !== '') {
     $conditions[] = "szuletesi_ido LIKE '%" . $conn->real_escape_string($searchSzuletesiIdo) . "%'";
 }
 if ($searchMunkakor !== '') {
-    $conditions[] = "Munkakor LIKE '%" . $conn->real_escape_string($searchMunkakor) . "%'";
+    $conditions[] = "mk.Nev LIKE '%" . $conn->real_escape_string($searchMunkakor) . "%'";
 }
 if ($searchMunkaviszonyKezdete !== '') {
     $conditions[] = "Munkaviszony_kezdete LIKE '%" . $conn->real_escape_string($searchMunkaviszonyKezdete) . "%'";
@@ -49,41 +51,43 @@ $result = $conn->query($sql);
 
 <div class='container mt-4'>
     <form method="POST" class="mb-4">
-        <div class="form-row align-items-end">
-            <div class="col-auto">
-                <label for="searchAzonosito">Azonosító:</label>
-                <input type="text" name="searchAzonosito" id="searchAzonosito" class="form-control" value="<?php echo htmlspecialchars($searchAzonosito); ?>">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label for="searchAzonosito" class="form-label">Azonosító:</label>
+                <input type="text" name="searchAzonosito" id="searchAzonosito" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchAzonosito); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchFelhasznalonev">Felhasználónév:</label>
-                <input type="text" name="searchFelhasznalonev" id="searchFelhasznalonev" class="form-control" value="<?php echo htmlspecialchars($searchFelhasznalonev); ?>">
+            <div class="col-md-3">
+                <label for="searchFelhasznalonev" class="form-label">Felhasználónév:</label>
+                <input type="text" name="searchFelhasznalonev" id="searchFelhasznalonev" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchFelhasznalonev); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchEmail">Email:</label>
-                <input type="text" name="searchEmail" id="searchEmail" class="form-control" value="<?php echo htmlspecialchars($searchEmail); ?>">
+            <div class="col-md-3">
+                <label for="searchEmail" class="form-label">Email:</label>
+                <input type="text" name="searchEmail" id="searchEmail" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchEmail); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchNev">Név:</label>
-                <input type="text" name="searchNev" id="searchNev" class="form-control" value="<?php echo htmlspecialchars($searchNev); ?>">
+            <div class="col-md-3">
+                <label for="searchNev" class="form-label">Név:</label>
+                <input type="text" name="searchNev" id="searchNev" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchNev); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchAdoszam">Adószám:</label>
-                <input type="text" name="searchAdoszam" id="searchAdoszam" class="form-control" value="<?php echo htmlspecialchars($searchAdoszam); ?>">
+            <div class="col-md-3">
+                <label for="searchAdoszam" class="form-label">Adószám:</label>
+                <input type="text" name="searchAdoszam" id="searchAdoszam" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchAdoszam); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchSzuletesiIdo">Születési idő:</label>
-                <input type="text" name="searchSzuletesiIdo" id="searchSzuletesiIdo" class="form-control" value="<?php echo htmlspecialchars($searchSzuletesiIdo); ?>">
+            <div class="col-md-3">
+                <label for="searchSzuletesiIdo" class="form-label">Születési idő:</label>
+                <input type="text" name="searchSzuletesiIdo" id="searchSzuletesiIdo" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchSzuletesiIdo); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchMunkakor">Munkakör:</label>
-                <input type="text" name="searchMunkakor" id="searchMunkakor" class="form-control" value="<?php echo htmlspecialchars($searchMunkakor); ?>">
+            <div class="col-md-3">
+                <label for="searchMunkakor" class="form-label">Munkakör:</label>
+                <input type="text" name="searchMunkakor" id="searchMunkakor" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchMunkakor); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchMunkaviszonyKezdete">Munkaviszony kezdete:</label>
-                <input type="text" name="searchMunkaviszonyKezdete" id="searchMunkaviszonyKezdete" class="form-control" value="<?php echo htmlspecialchars($searchMunkaviszonyKezdete); ?>">
+            <div class="col-md-3">
+                <label for="searchMunkaviszonyKezdete" class="form-label">Munkaviszony kezdete:</label>
+                <input type="text" name="searchMunkaviszonyKezdete" id="searchMunkaviszonyKezdete" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchMunkaviszonyKezdete); ?>">
             </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Search</button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fas fa-search"></i> Keresés
+                </button>
             </div>
         </div>
     </form>
@@ -94,6 +98,7 @@ $result = $conn->query($sql);
                 <tr>
                     <th>Azonosító</th>
                     <th>Felhasználónév</th>
+                    <th>Kép</th>
                     <th>Email</th>
                     <th>Telefonszám</th>
                     <th>Név</th>
@@ -106,24 +111,27 @@ $result = $conn->query($sql);
                     <th>Munkakör</th>
                     <th>Fizetés</th>
                     <th>Munkaviszony kezdete</th>
+                    <th>Kép műveletek</th>
                     <th>Módosítások</th>
                 </tr>
             </thead>
             <tbody>
-
             <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $imagePath = '../pics/' . $row['Azonosito'] . '.*';
+                    $imageFiles = glob($imagePath);
+
                     echo "<tr>
                             <td>" . $row['Azonosito'] . "</td>
-                            <td>";
-                                            if (!empty($imageFiles)) {
-                                                echo "<img src='" . $imageFiles[0] . "' alt='Kép' style='max-width: 100px; max-height: 100px;'>";
-                                            } else {
-                                                echo "Nincs kép";
-                                            }
-                                            echo "</td>
                             <td>" . $row['Felhasznalonev'] . "</td>
+                            <td>";
+                    if (!empty($imageFiles)) {
+                        echo "<img src='" . $imageFiles[0] . "' alt='Kép' style='max-width: 100px; max-height: 100px;'>";
+                    } else {
+                        echo "Nincs kép";
+                    }
+                    echo "</td>
                             <td>" . $row['email'] . "</td>
                             <td>" . $row['Telefonszam'] . "</td>
                             <td>" . $row['Nev'] . "</td>
@@ -133,24 +141,73 @@ $result = $conn->query($sql);
                             <td>" . $row['Anyja_neve'] . "</td>
                             <td>" . $row['szuletesi_ido'] . "</td>
                             <td>" . $row['Gyerekek'] . "</td>
-                            <td>" . $row['Munkakor'] . "</td>
+                            <td>" . $row['Munkakor_nev'] . "</td>
                             <td>" . $row['Fizetes'] . "</td>
                             <td>" . $row['Munkaviszony_kezdete'] . "</td>
                             <td>
+                                <form method='POST' enctype='multipart/form-data' class='mb-2'>
+                                    <input type='hidden' name='azonosito' value='" . $row['Azonosito'] . "'>
+                                    <input type='file' name='image' class='form-control-file'>
+                                    <button type='submit' name='upload' class='btn btn-primary btn-sm mt-1'>Feltöltés</button>
+                                </form>
+                            </td>
+                            <td>
                                 <a class='btn btn-warning btn-sm' href='index.php?p=munkavall_modosit&id=" . $row['Azonosito'] . "' title='Módosítás'><i class='fas fa-edit'></i></a>
-                                            <a class='btn btn-danger btn-sm' href='index.php?p=munkavall_torles&id=" . $row['Azonosito'] . "' title='Törlés'><i class='fas fa-trash-alt'></i></a>
-                                        </td>
+                                <a class='btn btn-danger btn-sm' href='index.php?p=munkavall_torles&id=" . $row['Azonosito'] . "' title='Törlés'><i class='fas fa-trash-alt'></i></a>";
+                    if (!empty($imageFiles)) {
+                        echo "<form method='POST' class='d-inline ms-1'>
+                                <input type='hidden' name='azonosito' value='" . $row['Azonosito'] . "'>
+                                <button type='submit' name='delete_image' class='btn btn-danger btn-sm' title='Kép törlése'>
+                                    <i class='fas fa-image'></i>
+                                </button>
+                              </form>";
+                    }
+                    echo "</td>
                         </tr>";
                 }
             } else {
-                echo "<tr><td colspan='15' class='text-center'>No records found</td></tr>";
-         }
-            ?>
+                echo "<tr><td colspan='17' class='text-center'>No records found</td></tr>";
+            }
 
+            // Kép feltöltés kezelése
+            if(isset($_POST['upload']) && isset($_FILES['image'])) {
+                $azonosito = $_POST['azonosito'];
+                $uploadDir = '../pics/';
+                $fileExtension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                $newFileName = $azonosito . '.' . $fileExtension;
+                $uploadFile = $uploadDir . $newFileName;
+
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                if(in_array(strtolower($fileExtension), $allowedExtensions)) {
+                    if(move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+                        echo "<div class='alert alert-success'>A kép sikeresen feltöltve.</div>";
+                    } else {
+                        echo "<div class='alert alert-danger'>Hiba történt a kép feltöltése során.</div>";
+                    }
+                } else {
+                    echo "<div class='alert alert-danger'>Csak JPG, JPEG, PNG és GIF fájlok engedélyezettek.</div>";
+                }
+            }
+
+            // Kép törlés kezelése
+            if(isset($_POST['delete_image'])) {
+                $azonosito = $_POST['azonosito'];
+                $imagePath = '../pics/' . $azonosito . '.*';
+                $imageFiles = glob($imagePath);
+
+                if(!empty($imageFiles)) {
+                    foreach($imageFiles as $file) {
+                        if(unlink($file)) {
+                            echo "<div class='alert alert-success'>A kép sikeresen törölve.</div>";
+                        } else {
+                            echo "<div class='alert alert-danger'>Hiba történt a kép törlése során.</div>";
+                        }
+                    }
+                }
+            }
+            ?>
             </tbody>
         </table>
     </div>
 </div>
 
-<?php
-?>

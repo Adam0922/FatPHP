@@ -47,34 +47,35 @@ $result = $conn->query($sql);
 
 <div class='container mt-4'>
     <form method="POST" class="mb-4">
-        <div class="form-row align-items-end">
-            <div class="col-auto">
-                <label for="searchId">ID:</label>
-                <input type="text" name="searchId" id="searchId" class="form-control" value="<?php echo htmlspecialchars($searchId); ?>">
+        <div class="row g-3">
+            <div class="col-md-2">
+                <label for="searchId" class="form-label">ID:</label>
+                <input type="text" name="searchId" id="searchId" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchId); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchEv">Év:</label>
-                <input type="text" name="searchEv" id="searchEv" class="form-control" value="<?php echo htmlspecialchars($searchEv); ?>">
+            <div class="col-md-2">
+                <label for="searchEv" class="form-label">Év:</label>
+                <input type="text" name="searchEv" id="searchEv" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchEv); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchHonap">Hónap:</label>
-                <input type="text" name="searchHonap" id="searchHonap" class="form-control" value="<?php echo htmlspecialchars($searchHonap); ?>">
+            <div class="col-md-2">
+                <label for="searchHonap" class="form-label">Hónap:</label>
+                <input type="text" name="searchHonap" id="searchHonap" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchHonap); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchNap">Nap:</label>
-                <input type="text" name="searchNap" id="searchNap" class="form-control" value="<?php echo htmlspecialchars($searchNap); ?>">
+            <div class="col-md-2">
+                <label for="searchNap" class="form-label">Nap:</label>
+                <input type="text" name="searchNap" id="searchNap" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchNap); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchErkezes">Érkezés:</label>
-                <input type="text" name="searchErkezes" id="searchErkezes" class="form-control" value="<?php echo htmlspecialchars($searchErkezes); ?>">
+            <div class="col-md-2">
+                <label for="searchErkezes" class="form-label">Érkezés:</label>
+                <input type="text" name="searchErkezes" id="searchErkezes" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchErkezes); ?>">
             </div>
-            <div class="col-auto">
-                <label for="searchTavozas">Távozás:</label>
-                <input type="text" name="searchTavozas" id="searchTavozas" class="form-control" value="<?php echo htmlspecialchars($searchTavozas); ?>">
+            <div class="col-md-2">
+                <label for="searchTavozas" class="form-label">Távozás:</label>
+                <input type="text" name="searchTavozas" id="searchTavozas" class="form-control form-control-sm" value="<?php echo htmlspecialchars($searchTavozas); ?>">
             </div>
-
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Search</button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fas fa-search"></i> Keresés
+                </button>
             </div>
         </div>
     </form>

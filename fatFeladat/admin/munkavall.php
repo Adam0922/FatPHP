@@ -139,11 +139,14 @@
 							</div>
 
 							<div class="col-12 col-md-6">
-								<div class="mb-3">
-									<label for="Munkakor" class="form-label">Munkakör</label>
-									<input type="text" class="form-control" id="Munkakor" name="Munkakor"   />
-								</div>
-							</div>
+                                <div class="mb-3">
+                                    <label for="Munkakor" class="form-label">Munkakör</label>
+                                    <select class="form-control" id="Munkakor" name="Munkakor">
+                                        <option value="">Válasszon munkakört</option>
+                                        <?php include 'get_munkakorok.php'; ?>
+                                    </select>
+                                </div>
+                            </div>
 
 							<div class="col-12 col-md-6">
 								<div class="mb-3">
