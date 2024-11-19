@@ -17,36 +17,42 @@ $sql = "SELECT m.Azonosito, m.Felhasznalonev, m.email, m.Telefonszam, m.Nev, m.L
 
 $conditions = [];
 if ($searchAzonosito !== '') {
-    $conditions[] = "Azonosito LIKE '%" . $conn->real_escape_string($searchAzonosito) . "%'";
+    $conditions[] = "m.Azonosito LIKE '%" . $conn->real_escape_string($searchAzonosito) . "%'";
 }
 if ($searchFelhasznalonev !== '') {
-    $conditions[] = "Felhasznalonev LIKE '%" . $conn->real_escape_string($searchFelhasznalonev) . "%'";
+    $conditions[] = "m.Felhasznalonev LIKE '%" . $conn->real_escape_string($searchFelhasznalonev) . "%'";
 }
 if ($searchEmail !== '') {
-    $conditions[] = "email LIKE '%" . $conn->real_escape_string($searchEmail) . "%'";
+    $conditions[] = "m.email LIKE '%" . $conn->real_escape_string($searchEmail) . "%'";
 }
 if ($searchNev !== '') {
-    $conditions[] = "Nev LIKE '%" . $conn->real_escape_string($searchNev) . "%'";
+    $conditions[] = "m.Nev LIKE '%" . $conn->real_escape_string($searchNev) . "%'";
 }
 if ($searchAdoszam !== '') {
-    $conditions[] = "Adoszam LIKE '%" . $conn->real_escape_string($searchAdoszam) . "%'";
+    $conditions[] = "m.Adoszam LIKE '%" . $conn->real_escape_string($searchAdoszam) . "%'";
 }
 if ($searchSzuletesiIdo !== '') {
-    $conditions[] = "szuletesi_ido LIKE '%" . $conn->real_escape_string($searchSzuletesiIdo) . "%'";
+    $conditions[] = "m.szuletesi_ido LIKE '%" . $conn->real_escape_string($searchSzuletesiIdo) . "%'";
 }
 if ($searchMunkakor !== '') {
     $conditions[] = "mk.Nev LIKE '%" . $conn->real_escape_string($searchMunkakor) . "%'";
 }
 if ($searchMunkaviszonyKezdete !== '') {
-    $conditions[] = "Munkaviszony_kezdete LIKE '%" . $conn->real_escape_string($searchMunkaviszonyKezdete) . "%'";
+    $conditions[] = "m.Munkaviszony_kezdete LIKE '%" . $conn->real_escape_string($searchMunkaviszonyKezdete) . "%'";
 }
 
+// Itt volt a hiba - nem adtuk hozzá a WHERE feltételeket
 if (!empty($conditions)) {
     $sql .= " WHERE " . implode(" AND ", $conditions);
 }
 
-$result = $conn->query($sql);
+// Debug: Uncomment to see the generated SQL query
+// echo $sql;
 
+$result = $conn->query($sql);
+if (!$result) {
+    die("Hiba a lekérdezésben: " . $conn->error);
+}
 ?>
 
 <div class='container mt-4'>

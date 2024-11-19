@@ -15,30 +15,61 @@ $searchMegjegyzes = isset($_POST['searchMegjegyzes']) ? $_POST['searchMegjegyzes
 // Start the base SQL query
 $sql = "SELECT jelenleti_id, ev, honap, nap, erkezes, tavozas, szunet, megjegyzes FROM jelenletiiv";
 
+include("../common/connect.php");
+
+// Initialize search variables for each field
+$searchId = isset($_POST['searchId']) ? $_POST['searchId'] : '';
+$searchEv = isset($_POST['searchEv']) ? $_POST['searchEv'] : '';
+$searchHonap = isset($_POST['searchHonap']) ? $_POST['searchHonap'] : '';
+$searchNap = isset($_POST['searchNap']) ? $_POST['searchNap'] : '';
+$searchErkezes = isset($_POST['searchErkezes']) ? $_POST['searchErkezes'] : '';
+$searchTavozas = isset($_POST['searchTavozas']) ? $_POST['searchTavozas'] : '';
+$searchSzunet = isset($_POST['searchSzunet']) ? $_POST['searchSzunet'] : '';
+$searchMegjegyzes = isset($_POST['searchMegjegyzes']) ? $_POST['searchMegjegyzes'] : '';
+
+// Start the base SQL query
+$sql = "SELECT j.jelenleti_id, j.ev, j.honap, j.nap, j.erkezes, j.tavozas, j.szunet, j.megjegyzes
+        FROM jelenletiiv j";
+
 // Build the WHERE clause dynamically based on non-empty search fields
 $conditions = [];
 if ($searchId !== '') {
-    $conditions[] = "jelenleti_id LIKE '%" . $conn->real_escape_string($searchId) . "%'";
+    $conditions[] = "j.jelenleti_id LIKE '%" . $conn->real_escape_string($searchId) . "%'";
 }
 if ($searchEv !== '') {
-    $conditions[] = "ev LIKE '%" . $conn->real_escape_string($searchEv) . "%'";
+    $conditions[] = "j.ev LIKE '%" . $conn->real_escape_string($searchEv) . "%'";
 }
 if ($searchHonap !== '') {
-    $conditions[] = "honap LIKE '%" . $conn->real_escape_string($searchHonap) . "%'";
+    $conditions[] = "j.honap LIKE '%" . $conn->real_escape_string($searchHonap) . "%'";
 }
 if ($searchNap !== '') {
-    $conditions[] = "nap LIKE '%" . $conn->real_escape_string($searchNap) . "%'";
+    $conditions[] = "j.nap LIKE '%" . $conn->real_escape_string($searchNap) . "%'";
 }
 if ($searchErkezes !== '') {
-    $conditions[] = "erkezes LIKE '%" . $conn->real_escape_string($searchErkezes) . "%'";
+    $conditions[] = "j.erkezes LIKE '%" . $conn->real_escape_string($searchErkezes) . "%'";
 }
 if ($searchTavozas !== '') {
-    $conditions[] = "tavozas LIKE '%" . $conn->real_escape_string($searchTavozas) . "%'";
+    $conditions[] = "j.tavozas LIKE '%" . $conn->real_escape_string($searchTavozas) . "%'";
+}
+if ($searchSzunet !== '') {
+    $conditions[] = "j.szunet LIKE '%" . $conn->real_escape_string($searchSzunet) . "%'";
+}
+if ($searchMegjegyzes !== '') {
+    $conditions[] = "j.megjegyzes LIKE '%" . $conn->real_escape_string($searchMegjegyzes) . "%'";
 }
 
 // Append conditions to SQL query if any exist
 if (!empty($conditions)) {
     $sql .= " WHERE " . implode(" AND ", $conditions);
+}
+
+// Debug: kiírja az SQL lekérdezést
+// echo $sql;
+
+$result = $conn->query($sql);
+
+if (!$result) {
+    die("Hiba a lekérdezés során: " . $conn->error);
 }
 
 $result = $conn->query($sql);
